@@ -1,0 +1,6 @@
+*.csv
+*.pth
+*.pkl
+*.model
+data/
+model/

@@ -1,0 +1,39 @@
+project:
+  name: "Pytorch_Telco_Churn_Predict"
+  version: "1.0.0"
+  seed: 42
+  debug: false
+
+
+data:
+  dataset: "Churn.csv"
+  data_root: "data/raw"
+  shuffle: true
+  batch_size: 4
+  num_workers: 4
+  pin_memory: true
+  train_split: 0.8
+
+
+training:
+  epochs: 100
+  save_path: 'src/save'
+  optimizer:
+    type: "AdamW"
+    lr: 0.001
+    weight_decay: 0.0005
+    betas: [0.9, 0.999]
+  scheduler:
+    type: "CosineAnnealingLR"
+    T_max: 100
+    eta_min: 0.00001
+  loss: "CrossEntropyLoss"
+  grad_clip: 1.0
+  early_stopping:
+    patience: 10
+    min_delta: 0.001
+
+
+device:
+  gpu_ids: [0]
+  use_cuda: true
